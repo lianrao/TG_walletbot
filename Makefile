@@ -1,4 +1,4 @@
-.PHONY: help build run test lint clean docker-up docker-down migrate git-init review commit commit-msg push git-status git-log
+.PHONY: help build run test lint clean docker-up docker-down migrate prototype-containment-check git-init review commit commit-msg push git-status git-log
 
 # 默认目标
 help: ## 显示帮助信息
@@ -37,6 +37,9 @@ test-coverage: ## 运行测试并生成覆盖率报告
 lint: ## 代码静态检查
 	go vet ./...
 	@echo "go vet 检查通过"
+
+prototype-containment-check: ## 验证历史原型保持本机/Testnet/无价值隔离
+	@bash scripts/security/check-prototype-containment.sh
 
 fmt: ## 格式化代码
 	gofmt -w .

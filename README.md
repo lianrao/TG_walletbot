@@ -2,7 +2,8 @@
 
 一个基于 Telegram 的加密货币钱包机器人，支持 USDT/TRX 充值、提现、转账、红包、收款等功能。
 
-> ⚠️ **声明**: 本项目仅供学习和研究使用，不建议未经安全审计直接用于生产环境。
+> [!CAUTION]
+> 本仓库是存在已确认严重资金安全问题的历史原型，只允许本机、隔离环境、Testnet 和无价值 Test Token。禁止公网、Mainnet、真实资金和 Production 凭证。目标替代系统位于 `cc.tyr/tgame/tg-wallet-platform`；修补本原型不代表获得生产资格。
 
 ## ✨ 功能特性
 
@@ -105,11 +106,13 @@ go run cmd/api/main.go -config configs/config.yaml
 cd web && npm install && npm run dev
 ```
 
-### Docker Compose 部署
+### Docker Compose 本机隔离启动
 
 ```bash
 cd deployments && docker-compose up -d
 ```
+
+Compose 只绑定 `127.0.0.1`，需要在未跟踪的本地环境文件中显式设置随机 `DB_ROOT_PASSWORD` 和 `JWT_SECRET`。Bot 位于可选 `bot` Profile，默认不启动；即使启动也强制 `TRON_ENABLED=false`。
 
 ## 📁 项目结构
 
